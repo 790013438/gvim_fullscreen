@@ -67,7 +67,7 @@ extern "C" __declspec(dllexport) int __cdecl ToggleFullscreen(int) {
             SetPropA(hWnd, "__window_rect__", HANDLE(r));
 
             SetWindowLongPtr(hWnd, GWL_STYLE, WS_POPUP | WS_VISIBLE);
-            SetClassLongPtr(hWnd, GCL_HBRBACKGROUND, (LONG)GetStockObject(BLACK_BRUSH));
+            SetClassLongPtr(hWnd, GCLP_HBRBACKGROUND, (LONG)GetStockObject(BLACK_BRUSH));
 
             SetWindowPos(hWnd, HWND_TOP, 0, 0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN), SWP_FRAMECHANGED);
 
@@ -75,7 +75,7 @@ extern "C" __declspec(dllexport) int __cdecl ToggleFullscreen(int) {
             break;
         case 1:
             SetWindowLongPtr(hWnd, GWL_STYLE, WS_OVERLAPPEDWINDOW | WS_VISIBLE);
-            SetClassLongPtr(hWnd, GCL_HBRBACKGROUND, (LONG)COLOR_BTNFACE);
+            SetClassLongPtr(hWnd, GCLP_HBRBACKGROUND, (LONG)COLOR_BTNFACE);
 
             r = reinterpret_cast<RECT*>(GetPropA(hWnd, "__window_rect__"));
             SetWindowPos(hWnd, HWND_TOP, r->left, r->top, r->right-r->left, r->bottom-r->top, SWP_FRAMECHANGED);
