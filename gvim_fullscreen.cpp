@@ -67,6 +67,7 @@ extern "C" __declspec(dllexport) int __cdecl ToggleFullscreen(int) {
             SetPropA(hWnd, "__window_rect__", HANDLE(r));
 
             SetWindowLongPtr(hWnd, GWL_STYLE, WS_POPUP | WS_VISIBLE);
+            // GCL_HBRBACKGROUND 64位不会识别,error C2065: “GCL_HBRBACKGROUND”: 未声明的标识符。替换成-10，或者GCLP_HBRBACKGROUND
             SetClassLongPtr(hWnd, GCLP_HBRBACKGROUND, (LONG)GetStockObject(BLACK_BRUSH));
 
             SetWindowPos(hWnd, HWND_TOP, 0, 0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN), SWP_FRAMECHANGED);
@@ -75,6 +76,7 @@ extern "C" __declspec(dllexport) int __cdecl ToggleFullscreen(int) {
             break;
         case 1:
             SetWindowLongPtr(hWnd, GWL_STYLE, WS_OVERLAPPEDWINDOW | WS_VISIBLE);
+            // GCL_HBRBACKGROUND 64位不会识别,error C2065: “GCL_HBRBACKGROUND”: 未声明的标识符。替换成-10，或者GCLP_HBRBACKGROUND
             SetClassLongPtr(hWnd, GCLP_HBRBACKGROUND, (LONG)COLOR_BTNFACE);
 
             r = reinterpret_cast<RECT*>(GetPropA(hWnd, "__window_rect__"));
